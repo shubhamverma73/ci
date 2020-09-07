@@ -68,7 +68,7 @@ class Home extends BaseController
     public function delete($id = null) {
  
         $model = new Data_model(); 
-        $data['post'] = $model->where('id', $id)->delete();      
+        $model->where('id', $id)->delete();      
         return redirect()->to('get_data');
     }
 
