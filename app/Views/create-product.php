@@ -20,7 +20,7 @@
 
 		<div class="row">
 			<div class="col-md-9">
-				<form action="<?php echo base_url('home/add');?>" name="post_form" id="post_form" method="post" accept-charset="utf-8" enctype="multipart/form-data">
+				<form action="<?php echo base_url('test/add');?>" name="post_form" id="post_form" method="post" accept-charset="utf-8" enctype="multipart/form-data">
 
 					<div class="form-group">
 						<label for="name">Name *</label>

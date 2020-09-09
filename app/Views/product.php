@@ -33,8 +33,8 @@
 								<td><?php echo $post['dp_price']; ?></td>
 								<td><?php echo $post['price']; ?></td>
 								<td>
-									<a href="<?php echo base_url('home/edit/'.$post['id']);?>" class="btn btn-sm btn-success">Edit</a>
-									<a href="<?php echo base_url('home/delete/'.$post['id']);?>" class="btn btn-sm btn-danger">Delete</a>
+									<a href="<?php echo base_url('test/edit/'.$post['id']);?>" class="btn btn-sm btn-success">Edit</a>
+									<a href="<?php echo base_url('test/delete/'.$post['id']);?>" class="btn btn-sm btn-danger">Delete</a>
 								</td>
 							</tr>
 						<?php endforeach; ?>

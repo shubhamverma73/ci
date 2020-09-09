@@ -20,7 +20,7 @@
  
     <div class="row">
       <div class="col-md-9">
-        <form action="<?php echo base_url('home/update');?>" name="post_form" id="post_form" method="post" accept-charset="utf-8">
+        <form action="<?php echo base_url('test/update');?>" name="post_form" id="post_form" method="post" accept-charset="utf-8">
  
            <input type="hidden" name="id" class="form-control" id="id" value="<?php echo $post['id'] ?>">
  
