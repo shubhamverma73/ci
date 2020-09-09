@@ -69,7 +69,7 @@ class Home extends BaseController
  
         $model = new Data_model(); 
         $model->where('id', $id)->delete();      
-        return redirect()->to('get_data');
+        return redirect()->route('get-data');
     }
 
 	//--------------------------------------------------------------------

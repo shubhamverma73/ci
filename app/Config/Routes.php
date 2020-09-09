@@ -31,6 +31,13 @@ $routes->setAutoRoute(true);
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
+$routes->add('get-data', 'Home::get_data');
+$routes->get('edit-data/(:any)', 'Home::edit/$1');
+$routes->group('admin', function($routes) { //http://localhost/ci/admin/faq
+	$routes->get('faq', function() {
+		echo "It's static data directly form routes no any views or controller are used for it.";
+	});
+});
 
 /**
  * --------------------------------------------------------------------
