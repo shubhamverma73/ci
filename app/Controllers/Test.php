@@ -2,6 +2,7 @@
 namespace App\Controllers;
 
 use App\Models\Data_model;
+use Config\Database;
 
 class Test extends BaseController
 {
@@ -9,9 +10,19 @@ class Test extends BaseController
         helper(['url']);
         $model = new Data_model();
  
-        $data['products'] = $model->orderBy('id', 'DESC')->findAll();        
+        $data['products'] = $model->orderBy('id', 'DESC')->findAll();  
+        //echo $this->db->getLastQuery();      
         return view('product', $data);
     }    
+
+
+    function get_data_query_builer(){
+        helper(['url']);
+        $query = $this->db->table('product')->get();
+        $data['products'] = $query->getResultArray();
+        //echo $this->db->getLastQuery();
+        return view('product', $data);
+    }
  
     public function create() {    
         return view('create-product');
@@ -55,7 +66,8 @@ class Test extends BaseController
                     'updated_at'  => date('Y-m-d H:i:s'),
                 ];
  
-        $save = $model->update($id,$data); 
+        //$save = $model->update($id,$data); 
+        $save = $model->where('id', $id)->update($id,$data); 
         return redirect()->route('get-data');
     }
  

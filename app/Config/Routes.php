@@ -32,12 +32,17 @@ $routes->setAutoRoute(true);
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
 $routes->add('get-data', 'Test::get_data');
+$routes->add('get-data-query-builer', 'Test::get_data_query_builer');
 $routes->get('edit-data/(:any)', 'Test::edit/$1');
 $routes->group('admin', function($routes) { //http://localhost/ci/admin/faq
 	$routes->get('faq', function() {
 		echo "It's static data directly form routes no any views or controller are used for it.";
 	});
 });
+$routes->get('learn-insert', 'Learn::index');
+$routes->get('learn-get', 'Learn::get');
+$routes->get('learn-update', 'Learn::update');
+$routes->get('learn-delete', 'Learn::delete');
 
 /**
  * --------------------------------------------------------------------
