@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Codeigniter 4 CRUD Tutorial - Post Form With Validation Example</title>
+	<title>Create Product</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script> 
