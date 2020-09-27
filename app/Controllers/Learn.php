@@ -5,6 +5,12 @@ use App\Models\UserModel;
 
 class Learn extends BaseController
 {
+
+    public function __construct() {
+        //helper('text'); //Can be use autoload helper in BaseController class
+        $UserModel = new UserModel();
+    }
+
 	public function index()
 	{
         $UserModel = new UserModel();
@@ -23,7 +29,7 @@ class Learn extends BaseController
 
     function get() {
         $UserModel = new UserModel();
-        $singleData = $UserModel->find(1);
+        $singleData = $UserModel->find(1); //It could be array [1,2,3]
         $allData = $UserModel->findAll();
         echo '<pre>';
         print_r($singleData);
@@ -48,6 +54,10 @@ class Learn extends BaseController
 
     function constant_define() {
         echo env('app.baseURL'); //Getting from .env file
+    }
+
+    function check_heler() {
+        echo word_limiter('Just for testing purpose only I am doing to learn codeigniter four(4)', 10);
     }
 
 }
