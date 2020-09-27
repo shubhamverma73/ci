@@ -8,7 +8,7 @@ class Learn extends BaseController
 
     public function __construct() {
         //helper('text'); //Can be use autoload helper in BaseController class
-        $UserModel = new UserModel();
+        $this->UserModel = new UserModel();
     }
 
 	public function index()
@@ -28,9 +28,9 @@ class Learn extends BaseController
 	}
 
     function get() {
-        $UserModel = new UserModel();
-        $singleData = $UserModel->find(1); //It could be array [1,2,3]
-        $allData = $UserModel->findAll();
+        //$UserModel = new UserModel();
+        $singleData = $this->UserModel->find(1); //It could be array [1,2,3]
+        $allData = $this->UserModel->findAll();
         echo '<pre>';
         print_r($singleData);
         print_r($allData);
