@@ -32,19 +32,36 @@ class Test extends BaseController
  
         helper(['form', 'url']);         
         $model = new Data_model();
- 
-        $data = [ 
-                    'cat_id' => '1',
-                    'name' => $this->request->getVar('name'),
-                    'dp_price'  => $this->request->getVar('dp_price'),
-                    'price'  => $this->request->getVar('price'),
-                    'status'  => '1',
-                    'date'  => date('Y-m-d'),
-                    'time'  => date('H:i:s'),
-                    'created_at'  => date('Y-m-d H:i:s'),
-            ]; 
-        $save = $model->insert($data); 
-        return redirect()->to( 'get-data');
+
+        $val = $this->validate([
+            'name' => 'required|min_length[3]|max_length[255]',
+        ]);
+
+        if (!$val) {
+            //echo view('create-product', ['validation' => $this->validator]);
+            return redirect()->back()->withInput()->with('validation', $this->validator);
+        } else { 
+            $data = [ 
+                        'cat_id' => '1',
+                        'name' => $this->request->getVar('name'),
+                        'dp_price'  => $this->request->getVar('dp_price'),
+                        'price'  => $this->request->getVar('price'),
+                        'status'  => '1',
+                        'date'  => date('Y-m-d'),
+                        'time'  => date('H:i:s'),
+                        'created_at'  => date('Y-m-d H:i:s'),
+                    ];
+            $model->transBegin();
+            $save = $model->insert($data); 
+            $lastId = $model->insertID();
+            if(empty($lastId)) {
+                $model->transRollback();
+                return redirect()->route('create');
+            } else { 
+                $model->transCommit();           
+                return redirect()->route('get-data');
+            }
+        }
     }
  
     public function edit($id = null) {

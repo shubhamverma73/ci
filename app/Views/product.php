@@ -11,7 +11,7 @@
 <body>
 
 	<div class="container mt-5">
-		<a href="<?php echo base_url('home/create') ?>" class="btn btn-sm btn-success">Create</a>
+		<a href="<?php echo base_url('create') ?>" class="btn btn-sm btn-success">Create</a>
 
 		<div class="row mt-12">
 			<table class="table table-bordered" id="products">
