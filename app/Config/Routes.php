@@ -34,6 +34,7 @@ $routes->get('/', 'Home::index');
 $routes->add('get-data', 'Test::get_data');
 $routes->add('create', 'Test::create');
 $routes->add('get-data-query-builer', 'Test::get_data_query_builer');
+$routes->add('join-table', 'Test::join_table');
 $routes->get('edit-data/(:any)', 'Test::edit/$1');
 $routes->group('admin', function($routes) { //http://localhost/ci/admin/faq
 	$routes->get('faq', function() {

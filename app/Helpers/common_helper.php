@@ -1,14 +1,11 @@
 <?php
-use Config\Services;
-
 function get_title($title, $trailing = true) {
 	if( $trailing ) $title .= ' - '.SITE_NAME;
 	return $title;
 }
 
 function loggedIn($redirect = '') {
-	$session = Services::session();
-	$user = $session->get('logged_in');
+	$user = session()->get('logged_in');
 	if($user) {
 		if( !empty($redirect) ) redirect($redirect);
 		return true;
@@ -261,21 +258,18 @@ function get_array_key($value, $array) {
 }
 
 function set_sessions($values) {
-	$session = Services::session();
-	$session->set($values);
+	session()->set($values);
 }
 
 function get_session($name='') {
-	$session = Services::session();
 	if( !empty($name) ) {
-		return $session->get($name);
+		return session()->get($name);
 	}
-	return $session->get();
+	return session()->get();
 }
 
 function unset_session($name) {
-	$session = Services::session();
-	$session->remove($name);
+	session()->remove($name);
 }
 
 function getFriendlyURL($string) {

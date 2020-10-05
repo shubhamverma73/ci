@@ -94,5 +94,16 @@ class Test extends BaseController
         $model->where('id', $id)->delete();      
         return redirect()->route('get-data');
     }
+ 
+    public function join_table() {
+ 
+        $model = new Data_model();
+        $query = $model->join('categories', 'categories.id = product.cat_id')->get();
+        $data = $query->getResultArray();
+        debug($data, false);
+
+        $data = $model->join('categories', 'categories.id = product.cat_id')->find(1);
+        debug($data);
+    }
     //--------------------------------------------------------------------
 }
