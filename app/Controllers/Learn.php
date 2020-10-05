@@ -72,6 +72,9 @@ class Learn extends BaseController
 
     function set_session() {
         $this->session->set('name', 'Shubham');
+
+        $array = array('logged_in' => 1, 'email' => 'shubhamverma73@gmail.com', 'name' => 'Shubham');
+        $this->session->set($array);
     }
 
     function get_session() {
@@ -80,6 +83,18 @@ class Learn extends BaseController
         echo $this->session->remove('name').'<br>'; //session remove
         echo session('name');
         echo $this->session->destroy(); //session destroy
+    }
+
+    function check_if_login_session_set() {
+        if(loggedIn() == 'true') {
+            echo 'User loggedIn';
+            echo '<br>'.session('logged_in');
+            echo '<br>'.get_session('logged_in');
+            echo '<br>'.user_logged_in();
+            debug($this->session->get());
+        } else {
+            echo 'User not loggedIn, try again';
+        }
     }
 
     function set_flash_data() {
