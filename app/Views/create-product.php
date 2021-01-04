@@ -16,6 +16,7 @@
 		<br>
 		<?php //echo $validation = \Config\Services::validation()->listErrors(); ?>
 		<?php $validation = \Config\Services::validation(); echo $validation->showError('name'); ?>
+		<?php echo get_flashdata('message'); ?>
 
 		<span class="d-none alert alert-success mb-3" id="res_message"></span>
 

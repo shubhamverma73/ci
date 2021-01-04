@@ -41,11 +41,31 @@ class Test extends BaseController
             //echo view('create-product', ['validation' => $this->validator]);
             return redirect()->back()->withInput()->with('validation', $this->validator);
         } else { 
+
+            // =================================== Image Upload ========================================
+            $file = $this->request->getFile('image');
+            if ($_FILES["image"]['name']) {
+                $input = $this->validate([
+                'image' => ['uploaded[image]', 'mime_in[image,image/jpg,image/jpeg,image/png]', 'max_size[image,1024]',]
+                ]);
+                if (!$input) {
+                    set_flashdata('message', 'Choose a valid file');
+                    return redirect()->route('create');
+                } else {
+                    $fileName = $file->getRandomName();
+                    $file->move(WRITEPATH . 'uploads/products', $fileName);
+                }
+            } else {
+                $fileName = '';
+            }
+            // =================================== Image Upload ========================================
+
             $data = [ 
                         'cat_id' => '1',
                         'name' => $this->request->getVar('name'),
                         'dp_price'  => $this->request->getVar('dp_price'),
                         'price'  => $this->request->getVar('price'),
+                        'image' => $fileName,
                         'status'  => '1',
                         'date'  => date('Y-m-d'),
                         'time'  => date('H:i:s'),
@@ -58,7 +78,8 @@ class Test extends BaseController
                 $model->transRollback();
                 return redirect()->route('create');
             } else { 
-                $model->transCommit();           
+                $model->transCommit();  
+                set_flashdata('message', 'Product added successfully');         
                 return redirect()->route('get-data');
             }
         }
@@ -75,16 +96,37 @@ class Test extends BaseController
  
         helper(['form', 'url']);         
         $model = new Data_model(); 
-        $id = $this->request->getVar('id');        
+        $id = $this->request->getVar('id');   
+
+        // =================================== Image Upload ========================================
+        $file = $this->request->getFile('image');
+        if ($_FILES["image"]['name']) {
+            $input = $this->validate([
+            'image' => ['uploaded[image]', 'mime_in[image,image/jpg,image/jpeg,image/png]', 'max_size[image,1024]',]
+            ]);
+            if (!$input) {
+                set_flashdata('message', 'Choose a valid file');
+                return redirect()->route('create');
+            } else {
+                $fileName = $file->getRandomName();
+                $file->move(WRITEPATH . 'uploads/products', $fileName);
+            }
+        } else {
+            $fileName = '';
+        }
+        // =================================== Image Upload ========================================
+
         $data = [ 
                     'name' => $this->request->getVar('name'),
                     'dp_price'  => $this->request->getVar('dp_price'),
                     'price'  => $this->request->getVar('price'),
+                    'image' => $fileName,
                     'updated_at'  => date('Y-m-d H:i:s'),
                 ];
  
         //$save = $model->update($id,$data); 
-        $save = $model->where('id', $id)->update($id,$data); 
+        $save = $model->where('id', $id)->update($id,$data);  
+        set_flashdata('message', 'Product updated successfully');    
         return redirect()->route('get-data');
     }
  

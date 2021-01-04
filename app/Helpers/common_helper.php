@@ -369,18 +369,12 @@ function random_code($length = 16) {
 }
 
 function set_flashdata($name, $message, $class='') {
-	$CI =& get_instance();
-	$data = array(
-		'message' => '<div class="'.TOGGLE_CLOSE_CLASS.' alert alert-'.$class.'">'.$message.'</div>',
-		'type' => $class
-	);
-	$CI->session->set_flashdata($name, $data);
+	$data = session()->setFlashdata($name, $message);
 }
 
 function get_flashdata($name) {
-	$CI =& get_instance();
-	$data = $CI->session->flashdata($name);
-	return $data['message'];
+	$data = session()->getFlashdata($name);
+	return $data;
 }
 
 function set_notification($message, $class) {

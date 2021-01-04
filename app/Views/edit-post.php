@@ -20,7 +20,7 @@
  
     <div class="row">
       <div class="col-md-9">
-        <form action="<?php echo base_url('test/update');?>" name="post_form" id="post_form" method="post" accept-charset="utf-8">
+        <form action="<?php echo base_url('test/update');?>" name="post_form" id="post_form" method="post" accept-charset="utf-8" enctype="multipart/form-data">
           <?php echo csrf_field(); ?>
            <input type="hidden" name="id" class="form-control" id="id" value="<?php echo $post['id'] ?>">
  
@@ -37,7 +37,12 @@
           <div class="form-group">
             <label for="price">Price</label>
             <input type="text" name="price" class="form-control" id="price" placeholder="Please enter price" value="<?php echo $post['price'] ?>">             
-          </div>  
+          </div>    
+
+          <div class="form-group">
+            <label for="email">Image</label>
+            <input type="file" name="image" class="form-control">
+          </div> 
  
           <div class="form-group">
            <button type="submit" id="send_form" class="btn btn-success">Submit</button>

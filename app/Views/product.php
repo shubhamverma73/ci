@@ -10,6 +10,7 @@
 </head>
 <body>
 
+	<?php echo get_flashdata('message'); ?>
 	<div class="container mt-5">
 		<a href="<?php echo base_url('create') ?>" class="btn btn-sm btn-success">Create</a>
 
@@ -21,6 +22,7 @@
 						<th>Name</th>
 						<th>DP Price</th>
 						<th>Price</th>
+						<th>Image</th>
 						<th>Action</th>
 					</tr>
 				</thead>
@@ -32,9 +34,10 @@
 								<td><?php echo $post['name']; ?></td>
 								<td><?php echo $post['dp_price']; ?></td>
 								<td><?php echo $post['price']; ?></td>
+								<td><img src="<?php echo base_url('writable/uploads/products/'.$post['image']); ?>" height="40" width="40"></td>
 								<td>
 									<a href="<?php echo base_url('test/edit/'.$post['id']);?>" class="btn btn-sm btn-success">Edit</a>
-									<a href="<?php echo base_url('test/delete/'.$post['id']);?>" class="btn btn-sm btn-danger">Delete</a>
+									<a href="<?php echo base_url('test/delete/'.$post['id']);?>" onclick="return confirm('Are you sure you want to delete?');" class="btn btn-sm btn-danger">Delete</a>
 								</td>
 							</tr>
 						<?php endforeach; ?>
